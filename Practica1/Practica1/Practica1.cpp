@@ -18,6 +18,7 @@ const char  BULLET_CHARACTER = '-';
 
 const int   WORLD_WIDTH = 80;
 const int	FPS = 20;
+const int   BULLET_SPEED = 2;
 
 //GAME VARIABLES
 int  charPosition = WORLD_WIDTH / 2;
@@ -68,7 +69,7 @@ void keyboardManagement() {
 
 void worldUpdate() {
     for (int i = 0; i < WORLD_WIDTH; i++) {
-        if (i == charPosition)						std::cout << PLAYER_CHARACTER;
+        if (i == charPosition)							std::cout << PLAYER_CHARACTER;
         else if (i == bulletPosition && shoot != 0)		std::cout << BULLET_CHARACTER;
         else											std::cout << WORLD_CHARACTER;
     }
@@ -77,7 +78,7 @@ void worldUpdate() {
 void shootChecker() {
     if (shoot == 0) return;
 
-    bulletPosition += shoot;
+    bulletPosition += shoot*BULLET_SPEED;
     if (bulletPosition < 0 || bulletPosition > WORLD_WIDTH) {
         shoot = 0;
     }
