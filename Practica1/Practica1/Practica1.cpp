@@ -44,9 +44,8 @@ int main() {
         keyboardManagement();	//Get the input from the keyboard.
         worldUpdate();			//Update the world with the new values.
         shootChecker();			//If the character is shooting update the bullet.
-
-                                //Move the cursor position to the beginning (delete all in the next iteration)
-        gotoXY(0, 0);
+        
+        gotoXY(0, 0);           //Move the cursor position to the beginning (delete all in the next iteration)
 
         //Calculate frame time, update the delay, and wait.
         actualFPS = WaitForFPS(FPS, startTime);
