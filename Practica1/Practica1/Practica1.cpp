@@ -6,17 +6,17 @@
 #include <chrono>
 
 //CONSTANTS
-const int LEFT_CHARACTER = 'a';
-const int RIGHT_CHARACTER = 'd';
-const int SHOOT_LEFT_CHARACTER = 'j';
-const int SHOOT_RIGHT_CHARACTER = 'k';
-const int EXIT_CHARACTER = '1';
+const int   LEFT_CHARACTER = 'a';
+const int   RIGHT_CHARACTER = 'd';
+const int   SHOOT_LEFT_CHARACTER = 'j';
+const int   SHOOT_RIGHT_CHARACTER = 'k';
+const int   EXIT_CHARACTER = '1';
 
-const char	WORLD_CHARACTER = '_';
-const char	PLAYER_CHARACTER = '@';
-const char	BULLET_CHARACTER = '-';
+const char  WORLD_CHARACTER = '_';
+const char  PLAYER_CHARACTER = '@';
+const char  BULLET_CHARACTER = '-';
 
-const int	WORLD_WIDTH = 80;
+const int   WORLD_WIDTH = 80;
 const int	FPS = 20;
 
 //GAME VARIABLES
@@ -37,18 +37,17 @@ int   WaitForFPS(const int desiredFPS, std::chrono::steady_clock::time_point sta
 //MAIN
 int main() {
     do {
-        std::chrono::steady_clock::time_point startTime = std::chrono::steady_clock::now();
+        std::chrono::steady_clock::time_point startTime = std::chrono::steady_clock::now(); //Update the start time to calculate the fps later on.
 
-        std::cout << "FPS: " << actualFPS << std::endl << std::endl;
+        std::cout << "FPS: " << actualFPS << std::endl << std::endl;                        //Show the fps counter.
 
-        keyboardManagement();	//Get the input from the keyboard.
-        worldUpdate();			//Update the world with the new values.
-        shootChecker();			//If the character is shooting update the bullet.
+        keyboardManagement();	                                                            //Get the input from the keyboard.
+        worldUpdate();			                                                            //Update the world with the new values.
+        shootChecker();			                                                            //If the character is shooting update the bullet.
         
-        gotoXY(0, 0);           //Move the cursor position to the beginning (delete all in the next iteration)
+        gotoXY(0, 0);                                                                       //Move the cursor position to the beginning (delete all in the next iteration)
 
-        //Calculate frame time, update the delay, and wait.
-        actualFPS = WaitForFPS(FPS, startTime);
+        actualFPS = WaitForFPS(FPS, startTime);                                             //Calculate frame time, update the delay, and wait.
     } while (keepRunning);
 
     return 0;
@@ -60,8 +59,8 @@ void keyboardManagement() {
         switch (_getch()) {
         case LEFT_CHARACTER:		if (charPosition > 0)				charPosition--;										break; //Left movement
         case RIGHT_CHARACTER:		if (charPosition < WORLD_WIDTH - 1)	charPosition++;										break; //Right movement
-        case SHOOT_LEFT_CHARACTER:	if (shoot == 0) { shoot = -1; bulletPosition = charPosition - 1; }		break; //Left shoot
-        case SHOOT_RIGHT_CHARACTER:	if (shoot == 0) { shoot = 1;	bulletPosition = charPosition + 1; }	break; //Right shoot
+        case SHOOT_LEFT_CHARACTER:	if (shoot == 0) {                   shoot = -1; bulletPosition = charPosition - 1; }	break; //Left shoot
+        case SHOOT_RIGHT_CHARACTER:	if (shoot == 0) { shoot = 1;	    bulletPosition = charPosition + 1; }	            break; //Right shoot
         case EXIT_CHARACTER:											keepRunning = false;								break; //Exit game
         }
     }
